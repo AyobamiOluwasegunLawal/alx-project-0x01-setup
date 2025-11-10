@@ -1,10 +1,10 @@
 import UserCard from "@/components/common/UserCard";
 import Header from "@/components/layout/Header";
-import { UserProps } from "@/interfaces";
+import { PostProps, UserProps } from "@/interfaces";
 import React from "react";
 
-const User: React.FC<UserProps[]> = ({ users }) => {
-  console.log(users);
+const Users: React.FC<UserProps[]> = ({ posts }) => {
+  console.log(posts);
   return (
     <div className="flex flex-col h-screen">
       <Header />
@@ -16,19 +16,33 @@ const User: React.FC<UserProps[]> = ({ users }) => {
           </button>
         </div>
         <div className="grid grid-cols-3 gap-2 ">
-          {users?.map(({ address, company, id, name, email, phone, userName, website }: UserProps, key: number) => (
-            <UserCard
-              address={address}
-              company={company}
-              key={key}
-              email={email}
-              id={id}
-              name={name}
-              phone={phone}
-              userName={userName}
-              website={website}
-            />
-          ))}
+          {posts?.map(
+            (
+              {
+                address,
+                company,
+                email,
+                id,
+                name,
+                phone,
+                username,
+                website,
+              }: UserProps,
+              key: number
+            ) => (
+              <UserCard
+                address={address}
+                company={company}
+                email={email}
+                id={id}
+                name={name}
+                phone={phone}
+                username={username}
+                key={key}
+                website={website}
+              />
+            )
+          )}
         </div>
       </main>
     </div>
@@ -37,13 +51,13 @@ const User: React.FC<UserProps[]> = ({ users }) => {
 
 export async function getStaticProps() {
   const response = await fetch("https://jsonplaceholder.typicode.com/Users");
-  const users = await response.json();
+  const posts = await response.json();
 
   return {
     props: {
-      users,
+      posts,
     },
   };
 }
 
-export default User;
+export default Users;
