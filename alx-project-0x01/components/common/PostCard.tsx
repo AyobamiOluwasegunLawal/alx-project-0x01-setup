@@ -1,7 +1,7 @@
-import { PostProps } from "@/interfaces";
-import React from "react";
+import { PostProps } from '@/interfaces'
+import React from 'react'
 
-const PostCard: React.FC<PostProps> = ({ title, body, id, userId }) => {
+const PostCard: React.FC<PostProps> = ({title, body, id, userId}) => {
   return (
     <div className="max-w-xl mx-auto my-6 p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
       <div className="mb-4">
@@ -13,7 +13,7 @@ const PostCard: React.FC<PostProps> = ({ title, body, id, userId }) => {
         <span>Post ID: {id}</span>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default PostCard;
+export default PostCard
